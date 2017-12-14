@@ -23,7 +23,7 @@ var platforms;
 var cursors;
 
 var lol;
-var score = 124;
+var score = 0;
 var scoreText;
 
 function create() {
