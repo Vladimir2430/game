@@ -74,7 +74,7 @@ function create() {
     for (var i = 0; i < 20; i++)
     {
         //  Create a lol inside of the 'lols' group
-        var lol = lols.create(i * 70, 0, 'lol');
+        var lol = lols.create(i * width_screen/19.5, 0, 'lol');
 
         //  Let gravity do its thing
         lol.body.gravity.y = 300;
@@ -142,11 +142,19 @@ function update() {
 	
 	if (player.body.y > heigth_screen-50) {
 		var sound = this.game.add.audio('hurt');
-        sound.play();
+        //sound.play();
 	    setTimeout(function () {
             end();
-        },200);
+        },50);
 	}
+	
+	if (cursors.down.isDown) {return restartGame();
+	}
+}
+
+function restartGame() {
+    this.game.state.restart();
+    score = 0;
 }
 
 function win() {
@@ -159,16 +167,10 @@ function win() {
 }
 
 function end() {
-	var game_end = 'GAME OVER\n\n' + '\n\nCLICK FOR RESTART!';
+	var game_end = 'GAME OVER\n\n' + '\n\nHIT THE DOWN ARROW FOR RESTART!';
     overTxt = game.add.text(game.world.centerX, game.world.centerY, game_end, { fill: '#fdf', fontSize: '64px' , align: 'center'});
 	overTxt.anchor.x = 0.5;
     overTxt.anchor.y = 0.5;
-    game.paused = true;
-}
-
-function listener () {
-    game.paused = false;
-    starfield.inputEnabled = false;
 }
 
 function collectLol (player, lol) {
