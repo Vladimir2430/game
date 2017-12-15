@@ -104,8 +104,8 @@ function update() {
     game.physics.arcade.collide(player, platforms);
     game.physics.arcade.collide(lols, platforms);
 
-    //  Checks to see if the player overlaps with any of the lols, if he does call the collectStar function
-    game.physics.arcade.overlap(player, lols, collectStar, null, this);
+    //  Checks to see if the player overlaps with any of the lols, if he does call the collectLol function
+    game.physics.arcade.overlap(player, lols, collectLol, null, this);
 
     //  Reset the players velocity (movement)
     player.body.velocity.x = 0;
@@ -136,11 +136,17 @@ function update() {
     if (cursors.up.isDown && player.body.touching.down)
     {
         player.body.velocity.y = -350;
+		var sound = this.game.add.audio('jump');
+        sound.play();
 	}
 	
-	if (player.body.y > heigth_screen-50) {return end();
+	if (player.body.y > heigth_screen-50) {
+		var sound = this.game.add.audio('hurt');
+        sound.play();
+	    setTimeout(function () {
+            end();
+        },200);
 	}
-
 }
 
 function win() {
@@ -149,6 +155,7 @@ function win() {
     overTxt = game.add.text(game.world.centerX, game.world.centerY, game_win, { fill: '#08f', fontSize: '64px' , align: 'center'});
 	overTxt.anchor.x = 0.5;
     overTxt.anchor.y = 0.5;
+	game.paused = true;
 }
 
 function end() {
@@ -159,7 +166,12 @@ function end() {
     game.paused = true;
 }
 
-function collectStar (player, lol) {
+function listener () {
+    game.paused = false;
+    starfield.inputEnabled = false;
+}
+
+function collectLol (player, lol) {
     
     // Removes the lol from the screen
     lol.kill();
