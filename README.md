@@ -1,2 +1,2 @@
 # Игра доступна поссылке:
-# https://vladimir2430.github.io/game
+# https://vladimir2430.github.io/game/

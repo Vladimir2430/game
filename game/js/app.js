@@ -5,10 +5,10 @@ var game = new Phaser.Game(width_screen, heigth_screen, Phaser.AUTO, '', { prelo
 
 function preload() {
 
-    game.load.image('sky', 'images/sky.jpg');
+    game.load.image('sky', 'images/sky.png');
 	game.load.image('win', 'images/win.jpg');
-    game.load.image('ground', 'images/ground.jpg');
-	game.load.image('platform', 'images/platform.jpg');
+    game.load.image('ground', 'images/ground.png');
+	game.load.image('platform', 'images/platform.png');
     game.load.image('lol', 'images/lol.png');
     game.load.spritesheet('Alina', 'images/Alina.png', 32, 48);
 	game.load.audio('sound', 'sound/sound.mp3');
