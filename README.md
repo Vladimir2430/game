@@ -18,7 +18,7 @@
 
 5. Runs stably in the latest Chrome.
 
-6. Avaliable via a link. The simplest way is to deploy it on GitHub pages. (e.g. https://themarkmarrone.github.io/petrovich/, https://spider-shooter.github.io).
+6. Avaliable via a link. The simplest way is to deploy it on GitHub pages.
 
 7.Landing page containing:
 
