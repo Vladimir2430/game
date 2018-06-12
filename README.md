@@ -1,5 +1,5 @@
-# Игра доступна поссылке:
-# https://vladimir2430.github.io/game/
+# Do you want to play?
+# <a href="https://uladzimir-yeudakimovich.github.io/game">Click there ;)</a>
 # Requirements
 
 1. Any genre. Storyline around:
