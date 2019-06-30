@@ -1,5 +1,5 @@
 # Do you want to play?
-# <a href="http://uladzimir-yeudakimovich.ml/phaser-game/">Click there ;)</a> 
+# <a href="https://uladzimir-yeudakimovich.github.io/phaser-game/">Click there ;)</a> 
 # Requirements
 
 1. Any genre. Storyline around:
