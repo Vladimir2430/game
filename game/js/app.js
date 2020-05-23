@@ -28,13 +28,12 @@ var left = false;
 var right = false;
 var jump = false;
 var lol;
-var score = 0;
+var score = 159;
 var scoreText;
 
 function create() {
   game.physics.startSystem(Phaser.Physics.ARCADE);
   game.add.tileSprite(0, 0, width_screen, heigth_screen, 'sky');
-
   platforms = game.add.group();
   platforms.enableBody = true;
   var platform = platforms.create(0, game.world.height - 32, 'ground');
@@ -114,7 +113,8 @@ function update() {
 	
 	if (player.body.y > heigth_screen-50) {
 		var sound = this.game.add.audio('hurt');
-	    setTimeout(() => end(), 50);
+      setTimeout(() => end(), 50);
+      setTimeout(() => restartGame(), 5000);
     }
 
     if (left) {
@@ -134,9 +134,9 @@ function update() {
       }
     } 
 	
-	if (keyR.isDown) {
-    restartGame();
-  }
+	// if (keyR.isDown) {
+  //   restartGame();
+  // }
 }
 
 function restartGame() {
@@ -146,7 +146,7 @@ function restartGame() {
 
 function win() {
 	game.add.sprite(-50, -150, 'win');
-	var game_win = "YOU'VE GOT ALL COLLECTION\n\n" + '\n\nCLICK FOR RESTART!';
+	var game_win = "YOU'VE GOT ALL COLLECTION";
   overTxt = game.add.text(game.world.centerX, game.world.centerY, game_win, { fill: '#08f', fontSize: '64px' , align: 'center'});
 	overTxt.anchor.x = 0.5;
   overTxt.anchor.y = 0.5;
@@ -154,7 +154,7 @@ function win() {
 }
 
 function end() {
-	var game_end = 'GAME OVER\n\n' + '\n\nHIT THE DOWN ARROW FOR RESTART!';
+	var game_end = 'GAME OVER :(\n' + '\nTRY AGAINE!';
   overTxt = game.add.text(game.world.centerX, game.world.centerY, game_end, { fill: '#fdf', fontSize: '64px' , align: 'center'});
 	overTxt.anchor.x = 0.5;
   overTxt.anchor.y = 0.5;
@@ -172,8 +172,8 @@ function collectLol (player, lol) {
 	} else if (score === 80) {create_level_5();
 	} else if (score === 100) {create_level_6();
 	} else if (score === 114) {create_level_7();
-	} else if (score === 125) {create_level_8();
- 	} else if (score === 145) {create_level_9();
-	} else if (score === 165) {create_level_10();
-	} else if (score === 185) {win(); }
+	} else if (score === 124) {create_level_8();
+ 	} else if (score === 140) {create_level_9();
+	} else if (score === 160) {create_level_10();
+	} else if (score === 174) {win(); }
 }
