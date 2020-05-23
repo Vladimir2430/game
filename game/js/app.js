@@ -28,7 +28,7 @@ var left = false;
 var right = false;
 var jump = false;
 var lol;
-var score = 159;
+var score = 0;
 var scoreText;
 
 function create() {
@@ -151,6 +151,7 @@ function win() {
 	overTxt.anchor.x = 0.5;
   overTxt.anchor.y = 0.5;
 	game.paused = true;
+  setTimeout(() => restartGame(), 10000);
 }
 
 function end() {
