@@ -1,58 +1,7 @@
 //levels from 2 to 10
 
-function mainControls() {
-  game.physics.startSystem(Phaser.Physics.ARCADE);
-  game.add.tileSprite(0, 0, width_screen, heigth_screen, 'sky');
-  platforms = game.add.group();
-  platforms.enableBody = true;
-
-  player = game.add.sprite(10, game.world.height - 180, 'Alina');
-  game.physics.arcade.enable(player);
-  player.body.bounce.y = 0.2;
-  player.body.gravity.y = 600;
-  player.body.collideWorldBounds = true;
-  player.animations.add('left', [0, 1, 2, 3], 10, true);
-  player.animations.add('right', [5, 6, 7, 8], 10, true);
-  lols = game.add.group();
-  lols.enableBody = true;
-
-  for (var i = 0; i < 20; i++) {
-    var lol = lols.create(i * width_screen/19.5, 0, 'lol');
-    lol.body.gravity.y = 300;
-    lol.body.bounce.y = 0.7 + Math.random() * 0.2;
-  }
-  scoreText = game.add.text(16, 16, 'score: '+score, { fontSize: '32px', fill: '#fdf' });
-
-  cursors = game.input.keyboard.createCursorKeys();
-  
-  buttonleft = game.add.button(width_screen * 0.01, heigth_screen * 0.83, 'buttonhorizontal', null, this, 0, 1, 0, 1);
-  buttonleft.fixedToCamera = true;
-  buttonleft.events.onInputOver.add(function(){left=true;});
-  buttonleft.events.onInputOut.add(function(){left=false;});
-  buttonleft.events.onInputDown.add(function(){left=true;});
-  buttonleft.events.onInputUp.add(function(){left=false;});
-
-  buttonright = game.add.button(width_screen * 0.1, heigth_screen * 0.83, 'buttonhorizontal', null, this, 0, 1, 0, 1);
-  buttonright.fixedToCamera = true;
-  buttonright.events.onInputOver.add(function(){right=true;});
-  buttonright.events.onInputOut.add(function(){right=false;});
-  buttonright.events.onInputDown.add(function(){right=true;});
-  buttonright.events.onInputUp.add(function(){right=false;});
-
-  buttonjump = game.add.button(width_screen * 0.85, heigth_screen * 0.8, 'buttonjump', null, this, 0, 1, 0, 1);
-  buttonjump.fixedToCamera = true;
-  buttonjump.events.onInputOver.add(function(){jump=true;});
-  buttonjump.events.onInputOut.add(function(){jump=false;});
-  buttonjump.events.onInputDown.add(function(){jump=true;});
-  buttonjump.events.onInputUp.add(function(){jump=false;});
-}
-
-function create_level_2() {
-  mainControls()
-  var platform = platforms.create(0, game.world.height - 32, 'ground');
-  platform.scale.setTo(5, 1);
-  platform.body.immovable = true;
-
+function level2() {
+  createElementsGame();
   var ledge = platforms.create(width_screen*0.5, heigth_screen-120, 'platform');
   ledge.body.immovable = true;
   ledge = platforms.create(width_screen*0.35, heigth_screen-200, 'platform');
@@ -61,15 +10,10 @@ function create_level_2() {
   ledge.body.immovable = true;
   ledge = platforms.create(width_screen*0.55, heigth_screen-280, 'platform');
   ledge.body.immovable = true;
-  levelText = game.add.text(width_screen - 116, 16, 'Level 2', { fontSize: '32px', fill: '#fdf' });
 }
 
-function create_level_3() {
-  mainControls()
-  platform = platforms.create(0, game.world.height - 32, 'ground');
-  platform.scale.setTo(5, 1);
-  platform.body.immovable = true;
-
+function level3() {
+  createElementsGame();
   ledge = platforms.create(500, heigth_screen-120, 'platform');
   ledge.body.immovable = true;
   ledge = platforms.create(300, heigth_screen-200, 'platform');
@@ -78,15 +22,10 @@ function create_level_3() {
   ledge.body.immovable = true;
 	ledge = platforms.create(500, heigth_screen-280, 'platform');
   ledge.body.immovable = true;
-  levelText = game.add.text(width_screen - 116, 16, 'Level 3', { fontSize: '32px', fill: '#fdf' });
 }
 
-function create_level_4() {
-  mainControls()
-  var platform = platforms.create(0, game.world.height - 32, 'ground');
-  platform.scale.setTo(5, 1);
-  platform.body.immovable = true;
-
+function level4() {
+  createElementsGame();
   var ledge = platforms.create(100, heigth_screen-120, 'platform');
   ledge.body.immovable = true;
   ledge = platforms.create(300, heigth_screen-200, 'platform');
@@ -107,15 +46,10 @@ function create_level_4() {
   ledge.body.immovable = true;
 	ledge = platforms.create(1300, heigth_screen-120, 'platform');
   ledge.body.immovable = true;
-  levelText = game.add.text(width_screen - 116, 16, 'Level 4', { fontSize: '32px', fill: '#fdf' });
 }
 
-function create_level_5() {
-  mainControls()
-  var platform = platforms.create(0, game.world.height - 32, 'ground');
-  platform.scale.setTo(5, 1);
-  platform.body.immovable = true;
-  
+function level5() {
+  createElementsGame();
   ledge = platforms.create(0, heigth_screen-120, 'platform');
   ledge.body.immovable = true;
   ledge = platforms.create(400, heigth_screen-100, 'platform');
@@ -136,15 +70,10 @@ function create_level_5() {
   ledge.body.immovable = true;
   ledge = platforms.create(1200, heigth_screen-120, 'platform');
   ledge.body.immovable = true;
-  levelText = game.add.text(width_screen - 116, 16, 'Level 5', { fontSize: '32px', fill: '#fdf' });
 }
 
-function create_level_6() {
-  mainControls()
-  var platform = platforms.create(0, game.world.height - 32, 'ground');
-  platform.scale.setTo(1, 1);
-  platform.body.immovable = true;
-
+function level6() {
+  createElementsGame();
   ledge = platforms.create(0, heigth_screen-120, 'platform');
   ledge.body.immovable = true;
   ledge = platforms.create(400, heigth_screen-100, 'platform');
@@ -165,15 +94,10 @@ function create_level_6() {
   ledge.body.immovable = true;
   ledge = platforms.create(1200, heigth_screen-120, 'platform');
   ledge.body.immovable = true;
-  levelText = game.add.text(width_screen - 116, 16, 'Level 6', { fontSize: '32px', fill: '#fdf' });
 }
 
-function create_level_7() {
-  mainControls()
-  var platform = platforms.create(0, game.world.height - 32, 'ground');
-  platform.scale.setTo(0, 0);
-  platform.body.immovable = true;
-
+function level7() {
+  createElementsGame();
   ledge = platforms.create(0, heigth_screen-120, 'platform');
   ledge.body.immovable = true;
   ledge = platforms.create(250, heigth_screen-120, 'platform');
@@ -198,15 +122,10 @@ function create_level_7() {
   ledge.body.immovable = true;
   ledge = platforms.create(1250, heigth_screen-120, 'platform');
   ledge.body.immovable = true;
-  levelText = game.add.text(width_screen - 116, 16, 'Level 7', { fontSize: '32px', fill: '#fdf' });
 }
 
-function create_level_8() {
-  mainControls()
-  var platform = platforms.create(0, game.world.height - 32, 'ground');
-  platform.scale.setTo(0, 0);
-  platform.body.immovable = true;
-
+function level8() {
+  createElementsGame();
   ledge = platforms.create(0, heigth_screen-120, 'platform');
   ledge.body.immovable = true;
   ledge = platforms.create(200, heigth_screen-200, 'platform');
@@ -239,15 +158,10 @@ function create_level_8() {
   ledge.body.immovable = true;
   ledge = platforms.create(1180, heigth_screen-580, 'platform');
   ledge.body.immovable = true;
-  levelText = game.add.text(width_screen - 116, 16, 'Level 8', { fontSize: '32px', fill: '#fdf' });
 }
 
-function create_level_9() {
-  mainControls()
-  var platform = platforms.create(0, game.world.height - 32, 'ground');
-  platform.scale.setTo(0, 0);
-  platform.body.immovable = true;
-
+function level9() {
+  createElementsGame();
   ledge = platforms.create(40, heigth_screen-120, 'platform');
   ledge.body.immovable = true;
   ledge = platforms.create(270, heigth_screen-120, 'platform');
@@ -278,15 +192,10 @@ function create_level_9() {
   ledge.body.immovable = true;
   ledge = platforms.create(-80, heigth_screen-410, 'platform');
   ledge.body.immovable = true;
-  levelText = game.add.text(width_screen - 116, 16, 'Level 9', { fontSize: '32px', fill: '#fdf' });
 }
 
-function create_level_10() {
-  mainControls()
-  var platform = platforms.create(0, game.world.height - 32, 'ground');
-  platform.scale.setTo(0, 0);
-  platform.body.immovable = true;
-
+function level10() {
+  createElementsGame();
   ledge = platforms.create(0, heigth_screen-120, 'platform');
   ledge.body.immovable = true;
   ledge = platforms.create(260, heigth_screen-120, 'platform');
@@ -321,5 +230,4 @@ function create_level_10() {
   ledge.body.immovable = true;
   ledge = platforms.create(560, heigth_screen-100, 'platform');
   ledge.body.immovable = true;
-  levelText = game.add.text(width_screen - 126, 16, 'Level 10', { fontSize: '32px', fill: '#fdf' });
 }
