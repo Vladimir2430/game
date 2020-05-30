@@ -16,7 +16,7 @@ var levelGame;
 var game = new Phaser.Game(width_screen, heigth_screen, Phaser.AUTO, '', { preload, create, update });
 
 function preload() {
-  game.load.image('sky', 'images/clouds.jpg');
+  game.load.image('sky', 'images/Alina_1_picture.png');
   game.load.image('win', 'images/win.jpg');
   game.load.image('ground', 'images/ground.png');
   game.load.image('platform', 'images/platform.png');
