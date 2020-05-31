@@ -16,14 +16,14 @@ function createElementsGame() {
 function createSky() {
   // game.add.tileSprite(0, 0, width_screen, heigth_screen, 'sky');
   game.stage.backgroundColor = '#697e96';
-  var i = game.add.image(game.world.centerX, game.world.centerY, 'sky');
-  i.anchor.set(0.5);
-  // game.add.tileSprite(0,
-  //   game.height - game.cache.getImage('sky').height,
-  //   game.width,
-  //   game.cache.getImage('sky').height,
-  //   'sky'
-  // );
+  // var i = game.add.image(game.world.centerX, game.world.centerY, 'sky');
+  // i.anchor.set(0.5);
+  game.add.tileSprite(0,
+    game.height - game.cache.getImage('sky').height,
+    game.width,
+    game.cache.getImage('sky').height,
+    'sky'
+  );
   platforms = game.add.group();
   platforms.enableBody = true;
 }
