@@ -15,7 +15,7 @@ function createElementsGame() {
 
 function createSky() {
   // game.add.tileSprite(0, 0, width_screen, heigth_screen, 'sky');
-  game.stage.backgroundColor = '#697e96';
+  game.stage.backgroundColor = '#271E8E';
   // var i = game.add.image(game.world.centerX, game.world.centerY, 'sky');
   // i.anchor.set(0.5);
   game.add.tileSprite(0,
@@ -61,31 +61,34 @@ function createLols() {
 }
 
 function createButtotns() {
-  cursors = game.input.keyboard.createCursorKeys();
+  if (isMobile) {
+    buttonleft = game.add.button(width_screen * 0.01, heigth_screen * 0.83, 'buttonhorizontal', null, this, 0, 1, 0, 1);
+    buttonleft.fixedToCamera = true;
+    buttonleft.events.onInputOver.add(function(){left=true;});
+    buttonleft.events.onInputOut.add(function(){left=false;});
+    buttonleft.events.onInputDown.add(function(){left=true;});
+    buttonleft.events.onInputUp.add(function(){left=false;});
   
-  buttonleft = game.add.button(width_screen * 0.01, heigth_screen * 0.83, 'buttonhorizontal', null, this, 0, 1, 0, 1);
-  buttonleft.fixedToCamera = true;
-  buttonleft.events.onInputOver.add(function(){left=true;});
-  buttonleft.events.onInputOut.add(function(){left=false;});
-  buttonleft.events.onInputDown.add(function(){left=true;});
-  buttonleft.events.onInputUp.add(function(){left=false;});
-
-  buttonright = game.add.button(width_screen * 0.1, heigth_screen * 0.83, 'buttonhorizontal', null, this, 0, 1, 0, 1);
-  buttonright.fixedToCamera = true;
-  buttonright.events.onInputOver.add(function(){right=true;});
-  buttonright.events.onInputOut.add(function(){right=false;});
-  buttonright.events.onInputDown.add(function(){right=true;});
-  buttonright.events.onInputUp.add(function(){right=false;});
-
-  buttonjump = game.add.button(width_screen * 0.85, heigth_screen * 0.77, 'buttonjump', null, this, 0, 1, 0, 1);
-  buttonjump.fixedToCamera = true;
-  buttonjump.events.onInputOver.add(function(){jump=true;});
-  buttonjump.events.onInputOut.add(function(){jump=false;});
-  buttonjump.events.onInputDown.add(function(){jump=true;});
-  buttonjump.events.onInputUp.add(function(){jump=false;});
+    buttonright = game.add.button(width_screen * 0.1, heigth_screen * 0.83, 'buttonhorizontal', null, this, 0, 1, 0, 1);
+    buttonright.fixedToCamera = true;
+    buttonright.events.onInputOver.add(function(){right=true;});
+    buttonright.events.onInputOut.add(function(){right=false;});
+    buttonright.events.onInputDown.add(function(){right=true;});
+    buttonright.events.onInputUp.add(function(){right=false;});
+  
+    buttonjump = game.add.button(width_screen * 0.85, heigth_screen * 0.77, 'buttonjump', null, this, 0, 1, 0, 1);
+    buttonjump.fixedToCamera = true;
+    buttonjump.events.onInputOver.add(function(){jump=true;});
+    buttonjump.events.onInputOut.add(function(){jump=false;});
+    buttonjump.events.onInputDown.add(function(){jump=true;});
+    buttonjump.events.onInputUp.add(function(){jump=false;});
+  } else {
+    cursors = game.input.keyboard.createCursorKeys();
+  }
 }
 
 function createText() {
+  levelText = game.add.text(16, 16, `Lives: ${lives}`, { fontSize: '32px', fill: '#fdf' });
+  scoreText = game.add.text(game.world.centerX - 40, 16, `Score: ${score}`, { fontSize: '32px', fill: '#fdf' });
   levelText = game.add.text(width_screen - 126, 16, `Level ${levelGame}`, { fontSize: '32px', fill: '#fdf' });
-  scoreText = game.add.text(16, 16, `Score: ${score}`, { fontSize: '32px', fill: '#fdf' });
 }

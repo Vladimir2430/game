@@ -1,16 +1,17 @@
 var heigth_screen = window.innerHeight;
 var width_screen = window.innerWidth;
+var isMobile = window.matchMedia("screen and (max-width: 1025px)").matches;
 var player;
 var platforms;
-var cursors;
 // var keyR;
 var keySpace;
-var nextJump = 0;
+var cursors = false;
 var left = false;
 var right = false;
 var jump = false;
 var lol;
-var score = 113;
+var score = 173;
+var lives = 2;
 var scoreText;
 var levelGame;
 var game = new Phaser.Game(width_screen, heigth_screen, Phaser.AUTO, '', { preload, create, update });
@@ -45,10 +46,10 @@ function update() {
   game.physics.arcade.overlap(player, lols, levelControl, null, this);
   player.body.velocity.x = 0;
 
-  if (cursors.left.isDown) {
+  if (left || (cursors.left && cursors.left.isDown)) {
     player.body.velocity.x = -150;
     player.animations.play('left');
-  } else if (cursors.right.isDown) {
+  } else if (right || (cursors.right && cursors.right.isDown)) {
     player.body.velocity.x = 150;
     player.animations.play('right');
   } else {
@@ -56,34 +57,28 @@ function update() {
     player.frame = 4;
   }
 
-  if (keySpace.isDown && player.body.touching.down) {
+  if ((jump || keySpace.isDown) && player.body.touching.down) {
     player.body.velocity.y = -350;
     var sound = this.game.add.audio('jump');
     sound.play();
   }
 	
-	if (player.body.y > heigth_screen-50) {
+	if (player.body.y > heigth_screen - 50) {
 		var sound = this.game.add.audio('hurt');
-      setTimeout(() => finishGame(), 50);
+    if (lives > 0) {
+      lives = lives - 1;
+      createElementsGame();
+      if        (score >= 100 && score < 114) {level6();
+      } else if (score >= 114 && score < 125) {level7();
+      } else if (score >= 125 && score < 141) {level8();
+      } else if (score >= 141 && score < 160) {level9();
+      } else if (score >= 160 && score < 174) {level10();
+      }
+    } else {
+      finishGame();
       setTimeout(() => restartGame(), 5000);
     }
-
-    if (left) {
-      player.body.velocity.x = -150;
-      player.animations.play('left');
-    } else if (right) {
-      player.body.velocity.x = 150;
-      player.animations.play('right');
-    }
-    
-    if (jump) {
-      if (game.time.now > nextJump ){
-        player.body.velocity.y = -350;
-        var sound = this.game.add.audio('jump');
-        sound.play();
-        nextJump = game.time.now + 1200;
-      }
-    } 
+  }
 	
 	// if (keyR.isDown) {
   //   restartGame();
@@ -93,6 +88,7 @@ function update() {
 function restartGame() {
   this.game.state.restart();
   score = 0;
+  lives = 2;
   levelGame = null;
 }
 
@@ -102,7 +98,7 @@ function winGame() {
   overTxt = game.add.text(game.world.centerX, game.world.centerY, game_win, { fill: '#08f', fontSize: '64px' , align: 'center'});
 	overTxt.anchor.x = 0.5;
   overTxt.anchor.y = 0.5;
-	game.paused = true;
+	// game.paused = true;
   setTimeout(() => restartGame(), 10000);
 }
 
