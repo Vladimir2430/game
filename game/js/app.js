@@ -10,7 +10,7 @@ var left = false;
 var right = false;
 var jump = false;
 var lol;
-var score = 173;
+var score = 0;
 var lives = 2;
 var scoreText;
 var levelGame;
