@@ -10,7 +10,7 @@ var left = false;
 var right = false;
 var jump = false;
 var lol;
-var score = 0;
+var score = 113;
 var scoreText;
 var levelGame;
 var game = new Phaser.Game(width_screen, heigth_screen, Phaser.AUTO, '', { preload, create, update });
@@ -27,7 +27,7 @@ function preload() {
   game.load.audio('lol', 'sound/lol.mp3');
   game.load.audio('hurt', 'sound/hurt.mp3');
   game.load.spritesheet('buttonhorizontal', 'images/button-horizontal.png',96,64);
-  game.load.spritesheet('buttonjump', 'images/button-round-b.png',96,96);
+  game.load.spritesheet('buttonjump', 'images/button-round.png',96,96);
 }
 
 function create() {
@@ -93,6 +93,7 @@ function update() {
 function restartGame() {
   this.game.state.restart();
   score = 0;
+  levelGame = null;
 }
 
 function winGame() {
@@ -106,6 +107,7 @@ function winGame() {
 }
 
 function finishGame() {
+  player.kill();
 	var game_end = 'GAME OVER :(\n' + '\nTRY AGAINE!';
   overTxt = game.add.text(game.world.centerX, game.world.centerY, game_end, { fill: '#fdf', fontSize: '64px' , align: 'center'});
 	overTxt.anchor.x = 0.5;
@@ -124,8 +126,8 @@ function levelControl (player, lol) {
 	} else if (score === 80) {level5();
 	} else if (score === 100) {level6();
 	} else if (score === 114) {level7();
-	} else if (score === 124) {level8();
- 	} else if (score === 140) {level9();
+	} else if (score === 125) {level8();
+ 	} else if (score === 141) {level9();
 	} else if (score === 160) {level10();
 	} else if (score === 174) {winGame(); }
 }

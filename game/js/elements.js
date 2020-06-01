@@ -19,7 +19,7 @@ function createSky() {
   // var i = game.add.image(game.world.centerX, game.world.centerY, 'sky');
   // i.anchor.set(0.5);
   game.add.tileSprite(0,
-    game.height - game.cache.getImage('sky').height,
+    game.height - game.cache.getImage('sky').height + 20,
     game.width,
     game.cache.getImage('sky').height,
     'sky'
@@ -29,13 +29,19 @@ function createSky() {
 }
 
 function createGroung() {
-  var platform = platforms.create(0, game.world.height - 32, 'ground');
-  platform.scale.setTo(5, 1);
+  var platform = platforms.create(0, game.world.height - 12, 'ground');
+  if (score === 100) {
+    platform.scale.setTo(1, 1);
+  } else if (score > 113) {
+    platform.scale.setTo(0.3, 1);
+  } else {
+    platform.scale.setTo(5, 1);
+  }
   platform.body.immovable = true;
 }
 
 function createPlayer() {
-  player = game.add.sprite(10, game.world.height - 180, 'Alina');
+  player = game.add.sprite(0, game.world.height - 60, 'Alina');
   game.physics.arcade.enable(player);
   player.body.bounce.y = 0.2;
   player.body.gravity.y = 600;
@@ -71,7 +77,7 @@ function createButtotns() {
   buttonright.events.onInputDown.add(function(){right=true;});
   buttonright.events.onInputUp.add(function(){right=false;});
 
-  buttonjump = game.add.button(width_screen * 0.85, heigth_screen * 0.8, 'buttonjump', null, this, 0, 1, 0, 1);
+  buttonjump = game.add.button(width_screen * 0.85, heigth_screen * 0.77, 'buttonjump', null, this, 0, 1, 0, 1);
   buttonjump.fixedToCamera = true;
   buttonjump.events.onInputOver.add(function(){jump=true;});
   buttonjump.events.onInputOut.add(function(){jump=false;});
